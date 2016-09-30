@@ -1,2 +1,46 @@
 /**/
+.home_body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: palevioletred;
+}
+.home_header {
 
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    background-color: lightgray;
+}
+.tab-switch {
+
+  overflow-x: auto;
+  background-color: #fff;
+}
+.tab-switch_inner {
+  display: table;
+  position: relative;
+}
+.tab-switch_item {
+  display: table-cell;
+  overflow: hidden;
+  padding: 5px 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  column-width: 200px;
+  cursor: pointer;
+  font-size: 80%;
+  text-align: center;
+}
+.tab-switch_item.active {
+  color: #ff4500;
+}
+.list__item {
+    height: 480px;
+}
+.carousel {
+    background-color: blue;
+}
+.carousel-item {
+    background-color: peru;
+}

@@ -1,64 +1,191 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="myApp">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-    <script src="components/loader.js"></script>
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/onsenui/js/onsenui.min.js"></script>
-    <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="components/loader.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+  <script src="js/ui-utils.min.js"></script>
+  <script src="js/main.js"></script>
 
-    <link rel="stylesheet" href="components/loader.css">
-    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
 
-    <script>
-        ons.bootstrap()
-          .controller('AppController', function() {
-          });
-        ons.ready(function() {
-            console.log("Onsen UI is ready!");
-        });
-    </script>
 </head>
-<body>
-    <ons-page ng-controller="AppController as app">
-        <ons-tabbar>
-          <ons-tab page="page1.html" label="Page 1" icon="square" active="true"></ons-tab>
-          <ons-tab page="page2.html" label="Page 2" icon="square"></ons-tab>
-          <ons-tab page="page3.html" label="Page 3" icon="square"></ons-tab>
-          <ons-tab page="page4.html" label="Page 4" icon="square"></ons-tab>
-          <ons-tab page="page5.html" label="Page 5" icon="square"></ons-tab>
-        </ons-tabbar>
-    </ons-page>
+<body ng-controller="MainController">
+<ons-navigator var="myNavigator">
+  <ons-page>
 
-    <ons-template id="page1.html">
-      <ons-page>
-        Page 1
+    <!-- Tab MENU -->
+    <ons-tabbar>
+      <ons-tab page="home.html" label="ホーム" icon="ion-home" active="true" persistent></ons-tab>
+      <ons-tab page="search.html" label="さがす" icon="ion-ios-search-strong" persistent></ons-tab>
+      <ons-tab page="exhibit.html" label="出品" icon="ion-android-camera" persistent></ons-tab>
+      <ons-tab page="notice.html" label="お知らせ" icon="ion-ios-bell-outline" persistent></ons-tab>
+      <ons-tab page="mypage.html" label="マイページ" icon="ion-android-person" persistent></ons-tab>
+    </ons-tabbar>
+  </ons-page>
+</ons-navigator>
+
+<ons-template id="home.html">
+<ons-page ng-controller="HomeController">
+
+<div class="home_body">
+<div class="home_header">Rastro</div>
+
+<div class="tab-switch">
+  <div class="tab-switch_inner" ng-style="tabPoint">
+    <div class="tab-switch_item" ng-click="changeTab($index)" ng-class="{active: tab1}" style="width: {{tabWidth}}px;" ng-cloak>フォロー</div>
+    <div class="tab-switch_item" ng-click="changeTab($index)" ng-class="{active: tab2}" style="width: {{tabWidth}}px;" ng-cloak>新　着</div>
+    <div class="tab-switch_item" ng-click="changeTab($index)" ng-class="{active: tab3}" style="width: {{tabWidth}}px;" ng-cloak>お気に入り</div>
+  </div>
+</div>
+
+
+
+  <ons-carousel var="carousel" class="carousel" ons-postchange="console.log('Changed to ' + $event.activeIndex)" initial-index=0 style="height: {{carouselHeight}}px" swipeable auto-scroll overscrollable>
+    <ons-carousel-item class="carosel-item">
+      <ons-page ng-controller="ListController as list">
+        <ons-list>
+          <ons-list-item ons-lazy-repeat="list.delegate" ng-cloak>
+            <ons-row>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_0}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_1}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_2}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                  </ons-col>
+            </ons-row>
+            <ons-row>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_3}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_4}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_5}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+            </ons-row>
+            <ons-row>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_6}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_7}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_8}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+            </ons-row>
+            <ons-row>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_9}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_10}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+                <ons-col>
+                  <div class="item-image">
+                    <img ng-src="http://inter-reuse.co.jp/photo/i_img/{{item.itemId_11}}-01_sum.jpg" class="item-list-thum" style="height: {{item_list_thum}}px; width: {{item_list_thum}}px;"></img>
+                  </div>
+                </ons-col>
+            </ons-row>
+          </ons-list-item>
+        </ons-list>
       </ons-page>
-    </ons-template>
-
-    <ons-template id="page2.html">
-      <ons-page>
-        Page 2
+    </ons-carousel-item>
+    <ons-carousel-item>
+      <ons-page ng-controller="ListController as list">
+        <ons-list>
+          <ons-list-item ons-lazy-repeat="list.delegate">{{item.itemId_1}}</ons-list-item>
+        </ons-list>
       </ons-page>
-    </ons-template>
-
-    <ons-template id="page3.html">
-      <ons-page>
-        Page 3
+    </ons-carousel-item>
+    <ons-carousel-item>
+      <ons-page ng-controller="ListController as list">
+        <ons-list>
+          <ons-list-item ons-lazy-repeat="list.delegate">{{item.itemId_1}}</ons-list-item>
+        </ons-list>
       </ons-page>
-    </ons-template>
+    </ons-carousel-item>
+  </ons-carousel>
 
-    <ons-template id="page4.html">
+  </div>
+
+</ons-page>
+
+
+  </ons-template>
+
+<ons-template id="search.html">
+<ons-page>
+Page 2
+<div class="divtest" ng-class="{divtest: isDivtestUp}" ui-event="{scroll: 'onscroll($event)'}">
+<ul>
+<li ng-repeat="value in array">{{value}}</li>
+</ul>
+<p>scrollTop : {{scrollTop}} px</p>
+</div>
+</ons-page>
+</ons-template>
+
+
+<ons-template id="exhibit.html">
+<ons-page ng-controller="ListController as list">
+<ons-toolbar>
+<div class="center">Lists</div>
+<div class="right">
+<ons-toolbar-button ng-click="list.delegate.refresh()">Refresh</ons-toolbar-button>
+</div>
+</ons-toolbar>
+
+<ons-list>
+<ons-list-item ons-lazy-repeat="list.delegate">{{ item }}</ons-list-item>
+</ons-list>
+</ons-page>
+</ons-template>
+
+
+
+
+    <ons-template id="notice.html">
       <ons-page>
         Page 4
       </ons-page>
     </ons-template>
 
-    <ons-template id="page5.html">
+    <ons-template id="mypage.html">
       <ons-page>
         Page 5
       </ons-page>

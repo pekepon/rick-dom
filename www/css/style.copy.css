@@ -1,0 +1,83 @@
+/**/
+.header {
+    height: 65px;
+    background-color: #cccccc;
+}
+.translate_up {
+    animation: translate 2s; 
+    animation-iteration-count: 1; 
+    -webkit-animation: translate_up 1s; /* Safari & Chrome */
+    -webkit-animation-iteration-count: 1;
+    transform: translateY(-35px);
+}
+@keyframes translate_up { 
+  /*0%   { transform:  translate(0px, 0px);    } 
+  25%   { transform:  translate(0px, 50px);   }
+  75%   { transform:  translate(0px, -50px);   }
+  100%  { transform:  translateY(-50px);   } */
+  from {
+      transform: translateY(0px); 
+  }
+  to {
+      transform: translateY(-35px); 
+  }
+} 
+@-webkit-keyframes translate_up { 
+  /*0%   { -webkit-transform:  translate(0px, 0px) ;   } 
+  25%   { -webkit-transform:  translate(0px, 50px);   }
+  75%   { -webkit-transform:  translate(0px, -50px);   }
+  100%  { -webkit-transform:  translate(0px, -50px);   }*/
+    from {
+      -webkit-transform: translateY(0px); 
+  }
+  to {
+      -webkit-transform: translateY(-35px); 
+  }
+}
+.translate_down {
+    animation: translate 2s; 
+    animation-iteration-count: 1; 
+    -webkit-animation: translate_down 1s; /* Safari & Chrome */
+    -webkit-animation-iteration-count: 1;
+    transform:  translateY(0px);
+}
+@keyframes translate_down { 
+  /*0%   { transform:  translate(0px, 0px);    } 
+  25%   { transform:  translate(0px, 50px);   }
+  75%   { transform:  translate(0px, -50px);   }
+  100%  { transform:  translateY(-50px);   } */
+  from {
+      transform:  translateY(-35px); 
+  }
+  to {
+      transform:  translateY(0px); 
+  }
+} 
+@-webkit-keyframes translate_down { 
+  /*0%   { -webkit-transform:  translate(0px, 0px) ;   } 
+  25%   { -webkit-transform:  translate(0px, 50px);   }
+  75%   { -webkit-transform:  translate(0px, -50px);   }
+  100%  { -webkit-transform:  translate(0px, -50px);   }*/
+    from {
+      -webkit-transform:  translateY(-35px); 
+  }
+  to {
+      -webkit-transform:  translateY(0px); 
+  }
+} 
+.header_center {
+    text-align: center;
+}
+.fixbar {
+  position: absolute;
+  background-color: #f0f0f0;
+  width: 100%;
+  top: 35px;
+}
+
+.divtest {
+        width: 350px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: auto;
+      }
