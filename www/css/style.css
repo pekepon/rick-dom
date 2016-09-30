@@ -6,14 +6,12 @@
     background-color: palevioletred;
 }
 .home_header {
-
     height: 40px;
     width: 100%;
     text-align: center;
     background-color: lightgray;
 }
 .tab-switch {
-
   overflow-x: auto;
   background-color: #fff;
 }
@@ -37,10 +35,14 @@
 }
 .list__item {
     height: 480px;
+    padding-left: 0;
 }
 .carousel {
     background-color: blue;
 }
 .carousel-item {
     background-color: peru;
+}
+.item-image {
+    border: 1px #ccc solid;
 }

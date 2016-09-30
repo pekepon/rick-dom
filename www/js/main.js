@@ -51,11 +51,15 @@ app.controller('ListController', function($scope, $timeout, $http,  $q) {
         console.log("Destroyed item #" + index);
     }
   };
+  //console.log(calulateItemHeight);
 });
 
 app.controller('MainController', function($scope, $timeout, $http) {
-
-$scope.item_list_thum = screen.width / 3;
+//calulateItemHeight = (screen.width / 3) * 4;
+calulateItemHeight = 480;
+//console.log(calulateItemHeight);
+//$scope.item_list_thum = (screen.width / 3) - 2;
+$scope.item_list_thum = 118;
 
 });
 app.controller('HomeController', function($scope, $timeout, $http) {
